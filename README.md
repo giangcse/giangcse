@@ -10,6 +10,11 @@
   "university": "Cantho University (CTU), VN"
   "job": "Developer",
   "workAt": "VNPT Vĩnh Long",
+  "socialLinks": {
+    "facebook": "https://www.facebook.com/giangpt2808",
+    "telegram": "https://t.me/giangisnotdev",
+    "twitter": "https://www.twitter.com/giangpt2808"
+  },
   "skills": [
     "Backend developer",
     "AI Application",
