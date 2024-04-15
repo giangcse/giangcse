@@ -4,8 +4,10 @@
 {
   "fullName": "Phan Thanh Giảng",
   "dayOfBirdth": "1997-08-28",
+  "sex": "male",
   "email": "giangpt@duck.com",
-  "homeTown": "Vinhlong, VN",
+  "homeTown": "Vinhlong",
+  "nationality": "Vietnam",
   "major": "Computer science",
   "university": "Cantho University (CTU), VN"
   "job": "Developer",
@@ -25,9 +27,13 @@
     "PHP",
     "JavaScript"
   ],
-  "Databases": [
+  "databases": [
     "SQL Server",
     "MongoDB"
+  ],
+  "projects": [
+    "https://svtt.io.vn",
+    "https://gcs.id.vn"
   ]
 }
 ```
