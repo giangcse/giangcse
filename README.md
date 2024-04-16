@@ -1,8 +1,10 @@
-# PHAN THANH GIẢNG [GIANGCSE]
+# PHAN THANH GIẢNG [GIANGCSE]'s Resume
 -----------
 ```json
 {
-  "fullName": "Phan Thanh Giảng",
+  "firstName": "Giang",
+  "lastName": "Phan",
+  "vietnameseFullName": "Phan Thanh Giảng",
   "dayOfBirdth": "1997-08-28",
   "sex": "male",
   "email": "giangpt@duck.com",
