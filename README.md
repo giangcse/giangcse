@@ -1,42 +1,37 @@
-# PHAN THANH GIẢNG [GIANGCSE]'s Resume
------------
-```json
-{
-  "firstName": "Giang",
-  "lastName": "Phan",
-  "vietnameseFullName": "Phan Thanh Giảng",
-  "dayOfBirdth": "1997-08-28",
-  "sex": "male",
-  "email": "giangpt@duck.com",
-  "homeTown": "Vinhlong",
-  "nationality": "Vietnam",
-  "major": "Computer science",
-  "university": "Cantho University (CTU), VN"
-  "job": "Developer",
-  "workAt": "VNPT Vĩnh Long",
-  "socialLinks": {
-    "facebook": "https://www.facebook.com/giangpt2808",
-    "telegram": "https://t.me/giangisnotdev",
-    "twitter": "https://www.twitter.com/giangpt2808"
-  },
-  "skills": [
-    "Backend developer",
-    "AI Application",
-    "Operation"
-  ],
-  "programingLanguages": [
-    "Python",
-    "PHP",
-    "JavaScript"
-  ],
-  "databases": [
-    "SQL Server",
-    "MongoDB"
-  ],
-  "projects": [
-    "https://svtt.io.vn",
-    "https://gcs.id.vn"
-  ]
-}
-```
-see more https://gcs.id.vn/
+# 👋 Xin chào! Tôi là Giang Phan (Phan Thanh Giảng)
+
+![Profile Banner](giangpt.png) <!-- Nếu có banner, bạn có thể thay thế URL này -->
+
+## 🚀 Về tôi
+- 🎓 **Chuyên ngành**: Khoa học máy tính  
+- 🎓 **Trường**: Đại học Cần Thơ (CTU), Việt Nam  
+- 💼 **Công việc**: Developer tại VNPT Vĩnh Long  
+- 🌍 **Quốc tịch**: Việt Nam  
+- 🎉 **Ngày sinh**: 28/08/1997  
+- 📫 **Email**: [giangpt@duck.com](mailto:giangpt@duck.com)  
+- 🏠 **Quê quán**: Vĩnh Long
+
+## 💻 Kỹ năng chính
+- 🛠️ **Backend Developer**  
+- 🤖 **AI Application**  
+- ⚙️ **Operation**  
+
+## 💡 Ngôn ngữ lập trình
+- Python  
+- PHP  
+- JavaScript  
+
+## 🗄️ Cơ sở dữ liệu
+- SQL Server  
+- MongoDB  
+
+## 🌐 Các dự án nổi bật
+- 🔗 [SVTT - Quản lý sinh viên thực tập](https://svtt.io.vn)  
+- 🔗 [GCS - Giải pháp lưu trữ và chia sẻ](https://gcs.id.vn)
+
+## 📱 Kết nối với tôi
+- 📘 [Facebook](https://www.facebook.com/giangpt2808)  
+- ✈️ [Telegram](https://t.me/giangisnotdev)  
+- 🐦 [Twitter](https://www.twitter.com/giangpt2808)  
+
+Cảm ơn bạn đã ghé qua hồ sơ của tôi! 🚀  
