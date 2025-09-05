@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -92,7 +95,6 @@
             background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.08), transparent 40%);
             opacity: 0;
             transition: opacity 0.5s ease;
-            /* Đã xóa z-index: 2 để không che nội dung */
         }
 
         .glass-card:hover::before {
@@ -101,7 +103,6 @@
         
         .card-content {
             position: relative;
-            /* Đã xóa z-index: 1 */
         }
 
         .gradient-text {
@@ -144,155 +145,172 @@
         [data-sr] {
             visibility: hidden;
         }
+        /* Thêm style để ẩn các phần tử Vue cho đến khi được mount */
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="aurora-bg">
-        <div class="aurora-blob blob-1"></div>
-        <div class="aurora-blob blob-2"></div>
-        <div class="aurora-blob blob-3"></div>
-    </div>
-
-    <!-- Header -->
-    <header class="bg-black/20 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10">
-        <div class="container mx-auto px-6">
-            <nav class="flex justify-between items-center h-16">
-                <a href="#" class="text-lg font-bold text-white">Những thứ linh tinh</a>
-                <div class="hidden md:flex items-center space-x-8 text-sm">
-                    <a href="#product-scanner" class="text-gray-300 hover:text-white transition-colors">Barcode Scanner</a>
-                    <a href="#product-pdf" class="text-gray-300 hover:text-white transition-colors">PDF Tool</a>
-                    <a href="#product-bot" class="text-gray-300 hover:text-white transition-colors">SPX Bot</a>
-                </div>
-                <a href="mailto:giangpt@duck.com" class="hidden md:block text-sm text-blue-400 hover:text-blue-300 transition-colors">Liên hệ</a>
-            </nav>
+    <div id="app" v-cloak>
+        <div class="aurora-bg">
+            <div class="aurora-blob blob-1"></div>
+            <div class="aurora-blob blob-2"></div>
+            <div class="aurora-blob blob-3"></div>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="relative z-10">
-        <!-- Hero Section -->
-        <section class="text-center py-28 md:py-40">
+        <!-- Header -->
+        <header class="bg-black/20 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10">
             <div class="container mx-auto px-6">
-                <div data-sr>
-                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter gradient-text">
-                        Công cụ mạnh mẽ.
-                    </h1>
-                    <h2 class="mt-3 text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-gray-100">
-                        Cho công việc hiệu quả.
-                    </h2>
-                    <p class="mt-8 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
-                        Khám phá bộ sưu tập các ứng dụng miễn phí, mã nguồn mở được thiết kế để giúp bạn làm việc nhanh hơn và thông minh hơn.
-                    </p>
+                <nav class="flex justify-between items-center h-16">
+                    <a href="#" class="text-lg font-bold text-white">Những thứ linh tinh</a>
+                    <div class="hidden md:flex items-center space-x-8 text-sm">
+                        <a href="#product-scanner" class="text-gray-300 hover:text-white transition-colors">Barcode Scanner</a>
+                        <a href="#product-pdf" class="text-gray-300 hover:text-white transition-colors">PDF Tool</a>
+                        <a href="#product-bot" class="text-gray-300 hover:text-white transition-colors">SPX Bot</a>
+                    </div>
+                    <a href="mailto:giangpt@duck.com" class="hidden md:block text-sm text-blue-400 hover:text-blue-300 transition-colors">Liên hệ</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="relative z-10">
+            <!-- Hero Section -->
+            <section class="text-center py-28 md:py-40">
+                <div class="container mx-auto px-6">
+                    <div data-sr>
+                        <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter gradient-text">
+                            Công cụ mạnh mẽ.
+                        </h1>
+                        <h2 class="mt-3 text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-gray-100">
+                            Cho công việc hiệu quả.
+                        </h2>
+                        <p class="mt-8 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+                            Khám phá bộ sưu tập các ứng dụng miễn phí, mã nguồn mở được thiết kế để giúp bạn làm việc nhanh hơn và thông minh hơn.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section Wrapper -->
+            <div id="products" class="container mx-auto px-6 flex flex-col gap-20 md:gap-24">
+                
+                <!-- Vue.js sẽ tự động render các project vào đây -->
+                <section v-for="project in projects" :key="project.id" :id="project.id" class="glass-card p-8 md:p-12">
+                    <div class="card-content text-center">
+                        <div data-sr>
+                            <span class="text-lg font-semibold text-slate-400">{{ project.category }}</span>
+                            <h2 class="mt-4 text-4xl md:text-6xl font-bold tracking-tighter text-white">{{ project.title }}</h2>
+                            <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">{{ project.description }}</p>
+                            <div class="mt-10 flex items-center justify-center gap-4">
+                                <a v-if="project.primaryLink" :href="project.primaryLink.url" target="_blank" class="apple-button">
+                                    {{ project.primaryLink.text }}
+                                </a>
+                                <a v-if="project.secondaryLink" :href="project.secondaryLink.url" target="_blank" class="apple-button-secondary">
+                                    {{ project.secondaryLink.text }}
+                                </a>
+                            </div>
+                        </div>
+                        <div data-sr class="mt-16">
+                           <img :src="project.imageUrl" :alt="project.imageAlt" :class="project.imageClass" class="rounded-2xl shadow-2xl mx-auto">
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-24 md:mt-32">
+            <div class="container mx-auto px-8 py-12 text-sm text-slate-500 text-center">
+                <div class="border-t border-white/10 pt-10">
+                    <p>Copyright &copy; 2025 Giang CSE. All rights reserved.</p>
+                    <p class="mt-2">Phát triển với ❤️ cho cộng đồng. Xem thêm các dự án khác trên <a href="https://github.com/giangcse" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">GitHub</a>.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Products Section Wrapper -->
-        <div id="products" class="container mx-auto px-6 flex flex-col gap-20 md:gap-24">
-            <!-- Product 1: Barcode Scanner -->
-            <section id="product-scanner" class="glass-card p-8 md:p-12">
-                <div class="card-content text-center">
-                    <div data-sr>
-                        <span class="text-lg font-semibold text-slate-400">Webcam Barcode Scanner</span>
-                        <h2 class="mt-4 text-4xl md:text-6xl font-bold tracking-tighter text-white">Quét. Lưu. Xuất báo cáo.</h2>
-                        <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">Biến webcam của bạn thành một máy quét mã vạch và QR Code tốc độ cao. Lưu trữ và xuất báo cáo Excel chỉ với vài cú nhấp chuột.</p>
-                        <div class="mt-10">
-                            <a href="https://github.com/giangcse/WebcamBarcodeScanner/releases" target="_blank" class="apple-button">
-                                Tải về cho Windows
-                            </a>
-                        </div>
-                    </div>
-                    <div data-sr class="mt-16">
-                       <img src="https://i.ibb.co/PZHYmcWB/image.png" alt="Giao diện phần mềm Webcam Barcode Scanner" class="rounded-2xl shadow-2xl max-w-4xl mx-auto">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Product 2: PDF Tool -->
-            <section id="product-pdf" class="glass-card p-8 md:p-12">
-                 <div class="card-content text-center">
-                     <div data-sr>
-                        <span class="text-lg font-semibold text-slate-400">PDF Tool</span>
-                        <h2 class="mt-4 text-4xl md:text-6xl font-bold tracking-tighter text-white">Quản lý PDF hàng loạt.</h2>
-                        <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">Giải pháp tất cả trong một cho tài liệu PDF. Đếm trang, gộp file, đổi tên và nén các file dung lượng lớn một cách dễ dàng.</p>
-                        <div class="mt-10">
-                            <a href="https://github.com/giangcse/PdfToolWinFormsApp/releases" target="_blank" class="apple-button">
-                                Tải về cho Windows
-                            </a>
-                        </div>
-                    </div>
-                    <div data-sr class="mt-16">
-                        <img src="https://i.ibb.co/zWDptSWf/image.png" alt="Giao diện phần mềm PDF Toolkit" class="rounded-2xl shadow-2xl max-w-4xl mx-auto">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Product 3: SPX Tracking Bot -->
-            <section id="product-bot" class="glass-card p-8 md:p-12">
-                <div class="card-content text-center">
-                    <div data-sr>
-                        <span class="text-lg font-semibold text-slate-400">SPX Tracking Bot</span>
-                        <h2 class="mt-4 text-4xl md:text-6xl font-bold tracking-tighter text-white">Không bao giờ lỡ một cập nhật.</h2>
-                        <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">Con bot này sẽ tự động theo dõi đơn hàng Shopee Express và gửi thông báo tức thì đến Telegram của bạn.</p>
-                        <div class="mt-10 flex items-center justify-center gap-4">
-                            <a href="http://t.me/spxtrackingbot" target="_blank" class="apple-button">
-                                Thêm vào Telegram
-                            </a>
-                            <a href="https://github.com/giangcse/spx_tracking" target="_blank" class="apple-button-secondary">
-                                Xem mã nguồn
-                            </a>
-                        </div>
-                    </div>
-                    <div data-sr class="mt-16">
-                       <img src="https://i.ibb.co/8DcycvVT/image.png" alt="Giao diện SPX Tracking Bot trên Telegram" class="rounded-2xl shadow-2xl max-w-sm mx-auto">
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-24 md:mt-32">
-        <div class="container mx-auto px-8 py-12 text-sm text-slate-500 text-center">
-            <div class="border-t border-white/10 pt-10">
-                <p>Copyright &copy; 2025 Giang CSE. All rights reserved.</p>
-                <p class="mt-2">Phát triển với ❤️ cho cộng đồng. Xem thêm các dự án khác trên <a href="https://github.com/giangcse" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">GitHub</a>.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
     <!-- ScrollRevealJS -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-        // --- ScrollReveal Animation ---
-        const sr = ScrollReveal({
-            origin: 'bottom',
-            distance: '50px',
-            duration: 1200,
-            delay: 100,
-            reset: false,
-            easing: 'cubic-bezier(0.2, 1, 0.2, 1)',
-            mobile: true,
-        });
-        sr.reveal('[data-sr]');
+        const { createApp } = Vue;
 
-        // --- Liquid Glass Card Effect ---
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        createApp({
+            data() {
+                return {
+                    projects: [
+                        {
+                            id: 'product-scanner',
+                            category: 'Webcam Barcode Scanner',
+                            title: 'Quét. Lưu. Xuất báo cáo.',
+                            description: 'Biến webcam của bạn thành một máy quét mã vạch và QR Code tốc độ cao. Lưu trữ và xuất báo cáo Excel chỉ với vài cú nhấp chuột.',
+                            primaryLink: { url: 'https://github.com/giangcse/WebcamBarcodeScanner/releases', text: 'Tải về cho Windows' },
+                            secondaryLink: null,
+                            imageUrl: 'https://i.ibb.co/PZHYmcWB/image.png',
+                            imageAlt: 'Giao diện phần mềm Webcam Barcode Scanner',
+                            imageClass: 'max-w-4xl'
+                        },
+                        {
+                            id: 'product-pdf',
+                            category: 'PDF Tool',
+                            title: 'Quản lý PDF hàng loạt.',
+                            description: 'Giải pháp tất cả trong một cho tài liệu PDF. Đếm trang, gộp file, đổi tên và nén các file dung lượng lớn một cách dễ dàng.',
+                            primaryLink: { url: 'https://github.com/giangcse/PdfToolWinFormsApp/releases', text: 'Tải về cho Windows' },
+                            secondaryLink: null,
+                            imageUrl: 'https://i.ibb.co/zWDptSWf/image.png',
+                            imageAlt: 'Giao diện phần mềm PDF Toolkit',
+                            imageClass: 'max-w-4xl'
+                        },
+                        {
+                            id: 'product-bot',
+                            category: 'SPX Tracking Bot',
+                            title: 'Không bao giờ lỡ một cập nhật.',
+                            description: 'Con bot này sẽ tự động theo dõi đơn hàng Shopee Express và gửi thông báo tức thì đến Telegram của bạn.',
+                            primaryLink: { url: 'http://t.me/spxtrackingbot', text: 'Thêm vào Telegram' },
+                            secondaryLink: { url: 'https://github.com/giangcse/spx_tracking', text: 'Xem mã nguồn' },
+                            imageUrl: 'https://i.ibb.co/8DcycvVT/image.png',
+                            imageAlt: 'Giao diện SPX Tracking Bot trên Telegram',
+                            imageClass: 'max-w-sm'
+                        }
+                    ]
+                }
+            },
+            mounted() {
+                // Khởi tạo lại các hiệu ứng JS sau khi Vue đã render xong DOM
+                this.initScrollReveal();
+                this.initGlassCardEffect();
+            },
+            methods: {
+                initScrollReveal() {
+                    const sr = ScrollReveal({
+                        origin: 'bottom',
+                        distance: '50px',
+                        duration: 1200,
+                        delay: 100,
+                        reset: false,
+                        easing: 'cubic-bezier(0.2, 1, 0.2, 1)',
+                        mobile: true,
+                    });
+                    sr.reveal('[data-sr]');
+                },
+                initGlassCardEffect() {
+                    this.$nextTick(() => {
+                        document.querySelectorAll('.glass-card').forEach(card => {
+                            card.addEventListener('mousemove', e => {
+                                const rect = card.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
 
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-
-                // Đã xóa mã xoay 3D
-            });
-
-            card.addEventListener('mouseleave', () => {
-                // Đã xóa mã đặt lại vị trí xoay
-            });
-        });
+                                card.style.setProperty('--mouse-x', `${x}px`);
+                                card.style.setProperty('--mouse-y', `${y}px`);
+                            });
+                        });
+                    });
+                }
+            }
+        }).mount('#app');
     </script>
 </body>
 </html>
